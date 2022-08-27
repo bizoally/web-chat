@@ -4,7 +4,7 @@ function setCookie(cname, cvalue, exdays) {
   let expires = "expires="+ d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
-setCookie("name", "aniketcoockie", expires);
+setCookie("name", "aniketcoockie", 30);
 var myDataRef = firebase.database().ref('chat');
 $('#namesubmit').click(() =>{
   
