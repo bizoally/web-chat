@@ -1,3 +1,10 @@
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+setCookie("name", "aniketcoockie", expires);
 var myDataRef = firebase.database().ref('chat');
 $('#namesubmit').click(() =>{
   
@@ -11,18 +18,22 @@ $('#namesubmit').click(() =>{
           }
 
         });
-      $('#msgsubmit').click(()=> {
-          //console.log("click on msg")
-          var name = $('#nameInput').val();
-          var text = $('#messageInput').val();
-          // myDataRef.push({name: name, text: text});
-          myDataRef.push({
-              name: name,
-              text: text
-          });
-          $('#messageInput').val('');
+       
+          $('#msgsubmit').click(()=> {
+            if ($('#messageInput').val().length >=1){
+            //console.log("click on msg")
+            var name = $('#nameInput').val();
+            var text = $('#messageInput').val();
+            // myDataRef.push({name: name, text: text});
+            myDataRef.push({
+                name: name,
+                text: text
+            });
+            $('#messageInput').val('');
+          }
+        });
         
-      });
+    
       myDataRef.on('child_added', function(chatting) {
         var message = chatting.val();
         displayChatMessage(message.name, message.text);
