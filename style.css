@@ -45,6 +45,8 @@ em{
 }
 .text-msg{
 font-size: 20px;
+display: flex;
+    width: 97%;
 }
 .text-name{
   font-size: 13px;
